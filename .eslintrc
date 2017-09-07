@@ -2,6 +2,15 @@
   "extends" : "eslint-config-availity/react",
   "rules": {
     "semi" : [2, "always"],
-    "comma-dangle": [2, "always-multiline"]
+    "comma-dangle": [2, "always-multiline"],
+    "no-return-assign": [0],
+    "react/sort-comp": [0],
+    "eqeqeq": [0],
+    "no-unused-vars": [ 1, {
+      "caughtErrors:": "all",
+      "varsIgnorePattern": "(colors|React)",
+      "argsIgnorePattern": "^_",
+      "ignoreRestSiblings": true
+    }],
   }
 }

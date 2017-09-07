@@ -36,6 +36,11 @@ class BlockUi extends Component {
     this.tabbedDownTop = this.tabbedDownTop.bind(this);
     this.tabbedUpBottom = this.tabbedUpBottom.bind(this);
     this.tabbedDownBottom = this.tabbedDownBottom.bind(this);
+
+    this.catchTopFocus = c=> this.topFocus = c;
+    this.catchBlocker = c=> this.blocker = c;
+    this.catchHelper = c=> this.helper = c;
+
   }
 
   blockingTab(e, withShift = false) {
@@ -108,12 +113,12 @@ class BlockUi extends Component {
     return (
       <Tag {...attributes} className={classes} aria-busy={blocking}>
         {blocking &&
-        <div tabIndex="0" onKeyUp={this.tabbedUpTop} onKeyDown={this.tabbedDownTop} ref={c => this.topFocus = c} />}
+        <div tabIndex="0" onKeyUp={this.tabbedUpTop} onKeyDown={this.tabbedDownTop} ref={this.catchTopFocus} />}
         {renderChilds && children}
         {blocking &&
         <div className="block-ui-container"
           tabIndex="0"
-          ref={c => this.blocker = c}
+          ref={this.catchBlocker}
           onKeyUp={this.tabbedUpBottom}
           onKeyDown={this.tabbedDownBottom}
         >
@@ -126,7 +131,7 @@ class BlockUi extends Component {
           </div>
         </div>
         }
-        <span ref={c => this.helper = c} />
+        <span ref={this.catchHelper} />
       </Tag>
     );
   }

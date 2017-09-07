@@ -143,6 +143,17 @@ var BlockUi$1 = function (_Component) {
     _this.tabbedDownTop = _this.tabbedDownTop.bind(_this);
     _this.tabbedUpBottom = _this.tabbedUpBottom.bind(_this);
     _this.tabbedDownBottom = _this.tabbedDownBottom.bind(_this);
+
+    _this.catchTopFocus = function (c) {
+      return _this.topFocus = c;
+    };
+    _this.catchBlocker = function (c) {
+      return _this.blocker = c;
+    };
+    _this.catchHelper = function (c) {
+      return _this.helper = c;
+    };
+
     return _this;
   }
 
@@ -212,8 +223,6 @@ var BlockUi$1 = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
       var _props = this.props,
           Tag = _props.tag,
           blocking = _props.blocking,
@@ -231,17 +240,13 @@ var BlockUi$1 = function (_Component) {
       return React.createElement(
         Tag,
         _extends({}, attributes, { className: classes, 'aria-busy': blocking }),
-        blocking && React.createElement('div', { tabIndex: '0', onKeyUp: this.tabbedUpTop, onKeyDown: this.tabbedDownTop, ref: function ref(c) {
-            return _this3.topFocus = c;
-          } }),
+        blocking && React.createElement('div', { tabIndex: '0', onKeyUp: this.tabbedUpTop, onKeyDown: this.tabbedDownTop, ref: this.catchTopFocus }),
         renderChilds && children,
         blocking && React.createElement(
           'div',
           { className: 'block-ui-container',
             tabIndex: '0',
-            ref: function ref(c) {
-              return _this3.blocker = c;
-            },
+            ref: this.catchBlocker,
             onKeyUp: this.tabbedUpBottom,
             onKeyDown: this.tabbedDownBottom
           },
@@ -257,9 +262,7 @@ var BlockUi$1 = function (_Component) {
             )
           )
         ),
-        React.createElement('span', { ref: function ref(c) {
-            return _this3.helper = c;
-          } })
+        React.createElement('span', { ref: this.catchHelper })
       );
     }
   }]);
