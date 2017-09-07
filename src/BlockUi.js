@@ -77,7 +77,7 @@ class BlockUi extends Component {
           this.focused = document.activeElement;
           // https://www.tjvantoll.com/2013/08/30/bugs-with-document-activeelement-in-internet-explorer/#blurring-the-body-switches-windows-in-ie9-and-ie10
           if (this.focused && this.focused !== document.body) {
-            setImmediate(() => this.topFocus && this.topFocus.focus());
+            setTimeout(() => this.topFocus && this.topFocus.focus(), 0);
           }
         }
       } else {
