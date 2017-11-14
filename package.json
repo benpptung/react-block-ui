@@ -7,10 +7,6 @@
   "jsnext:main": "dist/reactblockui.es.js",
   "module": "dist/reactblockui.es.js",
   "style": "style.css",
-  "engines": {
-    "node": ">= 5.0.0",
-    "npm": "^3.0.0"
-  },
   "scripts": {
     "coveralls": "coveralls < ./__test__/coverage/lcov.info",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha-webpack",
